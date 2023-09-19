@@ -1,26 +1,22 @@
 import React from 'react';
+import {useState,useEffect,useRef} from 'react';
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import logo from './logo.svg';
 import './App.css';
 
+import useModal from './hooks/useModal';
+import { Calender } from './Calender';
+
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return(
+   <div>
+    <Calender />
+   
+
+   </div>
+  )
 }
 
 export default App;
