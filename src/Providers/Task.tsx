@@ -1,4 +1,4 @@
-class Task {
+export class Task {
     subject:string;
     date:Date;
     stringDate:string;

@@ -33,6 +33,7 @@ export const Calender = () => {
  const days = [0,1,2,3,4,5,6];
  const addSchedule = (args:Date) => {
   setDay(args);
+  
   console.log(args);
   showModal();
 
@@ -116,7 +117,7 @@ export const Calender = () => {
        
        <Modal>
         <>
-          <Link to= {'/Schedule'}>スケジュールを作成</Link>
+          <Link to = {`/Schedule/${day}`}>スケジュールを作成</Link>
           <p>スケジュールを削除</p>
           <button onClick = {closeModal}>閉じる</button>
         </>

@@ -20,7 +20,7 @@ root.render(
       </ScheduleProvider>
     </ProjectProvider>
     <Routes>
-      <Route path = '/Schedule' element = {<AddSchedule/>}/>
+      <Route path = '/Schedule/:Date' element = {<AddSchedule/>}/>
     </Routes>
     </BrowserRouter>
     

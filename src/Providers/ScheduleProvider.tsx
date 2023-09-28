@@ -6,7 +6,7 @@ import React, {
 	Dispatch,
 	SetStateAction,
 } from "react";
- 
+
 class Task {
     subject:string;
     date:Date;
@@ -20,6 +20,7 @@ class Task {
 
     }
 };
+
 export type Schedule = {[key: string]: Task[]};
 type Props = {
     children:ReactNode;
@@ -39,7 +40,6 @@ type ScheduleContextType = {
 export const ScheduleProvider:FC<Props> = (props) => {
     const {children} = props;
     const [schedules,setSchedule] = useState<Schedule>({});
-
 
     return (
         <ScheduleContext.Provider value = {{schedules,setSchedule}}> 
