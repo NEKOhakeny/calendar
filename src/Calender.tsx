@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {useState,useEffect,useRef} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Link,NavLink, useLocation} from 'react-router-dom';
 import { useNavigate } from "react-router-dom"
 import useModal from './hooks/useModal';
+import { SlideToggle } from 'react-smooth-slide-toggle';
+import SlideRoutes from 'react-slide-routes';
 
+
+const Home = ():JSX.Element => <div>Home</div>;
+const About = ():JSX.Element => <div>About</div>;
+const Contact = ():JSX.Element => <div>Contact</div>;
 
 export const Calender = () => {
   const [date,setDate] = useState<Date>(()=>{
     return new Date();
  })
- const {Modal,showModal,closeModal} = useModal();
+ const [day,setDay] = useState<Date>(()=>{
+  return new Date();
+})
+ const [swp,setSwp] = useState(false);
+  const {Modal,showModal,closeModal} = useModal();
  const inputDate = useRef<HTMLInputElement>(null);
  const[calender,setCalender] = useState<Date[][]> (()=>{
    var ret = new Array<Array<Date>>(5);
@@ -21,12 +31,12 @@ export const Calender = () => {
    return ret;
  })
  const days = [0,1,2,3,4,5,6];
+ const addSchedule = (args:Date) => {
+  setDay(args);
+  console.log(args);
+  showModal();
 
-
-
-
-
-
+ }
 
  const handleClick = () => {
    if(inputDate.current?.value == null)return;
@@ -50,14 +60,8 @@ export const Calender = () => {
      {
        test[i][j] = new Date(year,month,i * 7 + j - day + 1);
      }
-   }
-   test.map((index,i)=>{
-     console.log(i);
-     index.map((day) =>{
-       console.log(day);
-     })
-   })
-   
+    }
+
    return test;
    
  }
@@ -102,18 +106,23 @@ export const Calender = () => {
            <tr>
              {week.map((index,j) =>(
                
-               <td onClick = {showModal}>
+               <td onClick = {() => addSchedule(index)}>
                  <h2>{index.getDate().toString()} </h2>
                </td>
              ))}
            </tr>
        ))}
+       
+       
        <Modal>
-         <div className = 'Modal'>
-           <h2>スケジュールを作成</h2>
-           <button onClick={closeModal}>Close</button>
-         </div>
+        <>
+          <Link to= {'/Schedule'}>スケジュールを作成</Link>
+          <p>スケジュールを削除</p>
+          <button onClick = {closeModal}>閉じる</button>
+        </>
        </Modal>
+      
+      
 
      </div>
    </div>

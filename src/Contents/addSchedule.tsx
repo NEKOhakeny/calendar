@@ -1,27 +1,29 @@
 import React, { ReactNode, useContext } from 'react';
 import { FC, useState } from "react";
 import { useEffect, } from 'react';
-import { ProjectContext } from '../Providers/ProjectProvider';
-import { ScheduleContext } from '../Providers/ScheduleProvider';
 import { useLocation } from "react-router-dom";
 import { BrowserRouter, Route, Link, } from 'react-router-dom';
-import { byDate } from '../Data/byDate';
+import { ScheduleContext,Schedule} from '../Providers/ScheduleProvider';
+import { ProjectContext } from '../Providers/ProjectProvider';
+import{} from '../Providers/ScheduleProvider';
 
-export const addSchedule:FC = () => {
-    const {schedules,setSchedules} = useContext(ScheduleContext);
-    useEffect(() =>{
-        async function  getSchedule() {
-            
-        }
-        getSchedule();
-    },[]);
-
-
-
-
+export const AddSchedule:FC = ():ReactNode => {
+    
+    const {schedules,setSchedule} = useContext(ScheduleContext);
+    const [count,setCount] = useState(0);
+    const addNewSchedule = (task:Task) =>  {
+        let mid = schedules;
+        mid[task.stringDate].push(task);
+        setSchedule(mid);
+        setCount(count + 1);
+    }
+    useEffect(() => {
+        
+    },[count]);
     return (
         <div className= 'addSchedule'>
-            <h1>スケジュール</h1>
+            <h1>新しいイヴェントを設定</h1>
+            <input type = "text" name = 'Date'>{}</input>
 
         </div>
     )

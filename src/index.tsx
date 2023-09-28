@@ -2,14 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-
+import { AddSchedule } from './Contents/AddSchedule';
+import { ProjectProvider } from './Providers/ProjectProvider';
+import { ScheduleProvider } from './Providers/ScheduleProvider';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    
+    <BrowserRouter>
+    <ProjectProvider>
+      <ScheduleProvider>
+      <App />
+      </ScheduleProvider>
+    </ProjectProvider>
+    <Routes>
+      <Route path = '/Schedule' element = {<AddSchedule/>}/>
+    </Routes>
+    </BrowserRouter>
+    
   </React.StrictMode>
 );
 
